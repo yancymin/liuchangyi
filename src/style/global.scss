@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap");
+
+@mixin font($size, $weight, $lineHeight) {
+  font-family: "Lexend Deca", sans-serif;
+  color: #000000;
+  font-weight: $weight;
+  font-size: #{$size}px;
+  line-height: #{$lineHeight}px;
+  @content;
+}
+
+* {
+  box-sizing: border-box;
+}
