@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <Nav />
+  <div class="home" id="home">
+    <Nav @langBtn="langBtn" :isCN="isCN" />
     <main>
       <div class="left">
         <div class="info">
-          <h1>A relentless mind focused on crafting beautiful user experience</h1>
-          <p>Currently located in Wuhan, CN as a designer of Geetest</p>
+          <h1>{{isCN?lang.CN[0]:lang.EN[0]}}</h1>
+          <p>{{isCN?lang.CN[1]:lang.EN[1]}}</p>
           <div class="contact">
-            <a href>
-              <img src="../assets/gmail.svg" alt /> Gmail
+            <a href="mailto:dcliuchangyi@gmail.com">
+              <img src="../assets/gmail.svg" alt />{{isCN?lang.CN[2]:lang.EN[2]}}
             </a>
-            <a href>
-              <img src="../assets/wechat.svg" alt />WeChat
+            <a>
+              <img src="../assets/wechat.svg" alt />{{isCN?lang.CN[3]:lang.EN[3]}}
             </a>
           </div>
         </div>
@@ -29,6 +29,20 @@ export default {
   name: 'home',
   components: {
     Nav,
+  },
+  data() {
+    return {
+      isCN: false,
+      lang: {
+        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 GeeTest 的设计师', '发邮件', '加微信'],
+        EN: ['A relentless mind focused on crafting beautiful user experience', 'Currently located in Wuhan, CN as a designer of Geetest', 'Gmail', 'WeChat'],
+      },
+    };
+  },
+  methods: {
+    langBtn() {
+      this.isCN = !this.isCN;
+    },
   },
 };
 </script>
@@ -52,7 +66,7 @@ export default {
     height: calc(100vh - 100px);
 
     .left {
-      max-width: 600px;
+      max-width: 580px;
       padding-top: 16%;
       display: flex;
       flex-direction: column;
@@ -131,6 +145,85 @@ export default {
       position: absolute;
       bottom: -2px;
       right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #home {
+    .nav {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 32px 20px;
+
+      ::v-deep .right {
+        .links {
+          margin-top: 28px;
+          a {
+            &:nth-of-type(1) {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+      ::v-deep .langSwitch {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+      }
+    }
+
+    h1 {
+      max-width: unset;
+      @include font(24, 400, 30);
+    }
+    p {
+      max-width: unset;
+      @include font(14, 400, 17);
+    }
+
+    main {
+      padding: 0 20px;
+      height: auto;
+      flex-direction: column;
+
+      .left {
+        .contact {
+          margin-top: 48px;
+
+          a {
+            width: 100%;
+
+            &:nth-of-type(1) {
+              margin-right: 12px;
+            }
+
+            &:nth-of-type(2) {
+              &:hover {
+                &::after {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        margin-top: 32px;
+        position: relative;
+        margin-bottom: -3px;
+        z-index: -1;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 0;
+        align-self: center;
+        color: white;
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
     }
   }
 }
