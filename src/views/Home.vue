@@ -1,5 +1,5 @@
 <template>
-  <div class="home" id="home">
+  <div class="home" id="home" :class="{isDark: isDark}">
     <Nav @langBtn="langBtn" :isCN="isCN" />
     <main>
       <div class="left">
@@ -8,10 +8,12 @@
           <p>{{isCN?lang.CN[1]:lang.EN[1]}}</p>
           <div class="contact">
             <a href="mailto:dcliuchangyi@gmail.com">
-              <img src="../assets/gmail.svg" alt />{{isCN?lang.CN[2]:lang.EN[2]}}
+              <img src="../assets/gmail.svg" alt />
+              {{isCN?lang.CN[2]:lang.EN[2]}}
             </a>
             <a>
-              <img src="../assets/wechat.svg" alt />{{isCN?lang.CN[3]:lang.EN[3]}}
+              <img src="../assets/wechat.svg" alt />
+              {{isCN?lang.CN[3]:lang.EN[3]}}
             </a>
           </div>
         </div>
@@ -30,8 +32,18 @@ export default {
   components: {
     Nav,
   },
+  mounted() {
+    const nowTime = new Date();
+
+    if (nowTime.getHours() >= 19 || nowTime.getHours() <= 7) {
+      this.isDark = true;
+    } else {
+      this.isDark = false;
+    }
+  },
   data() {
     return {
+      isDark: false,
       isCN: false,
       lang: {
         CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 GeeTest 的设计师', '发邮件', '加微信'],
@@ -143,8 +155,7 @@ export default {
       width: 100%;
       max-width: 700px;
       position: absolute;
-      bottom: -2px;
-      right: 0;
+      right: -8%;
     }
   }
 }
@@ -214,6 +225,7 @@ export default {
         position: relative;
         margin-bottom: -3px;
         z-index: -1;
+        pointer-events: none;
       }
 
       footer {
@@ -225,6 +237,33 @@ export default {
         margin-bottom: 16px;
       }
     }
+  }
+}
+
+.isDark {
+  background-color: black;
+
+  h1,
+  p,
+  footer {
+    color: white !important;
+  }
+
+  ::v-deep .nav {
+    a,
+    h1,
+    div {
+      color: white !important;
+    }
+
+    a {
+      border-color: white !important;
+    }
+  }
+
+  a {
+    border-color: white !important;
+    color: white;
   }
 }
 </style>
