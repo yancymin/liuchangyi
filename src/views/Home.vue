@@ -36,17 +36,17 @@ export default {
     Nav,
   },
   mounted() {
-    const nowTime = new Date();
+    // const nowTime = new Date();
 
-    if (nowTime.getHours() >= 19 || nowTime.getHours() <= 7) {
-      this.isDark = true;
-    } else {
-      this.isDark = false;
-    }
+    // if (nowTime.getHours() >= 19 || nowTime.getHours() <= 7) {
+    //   this.isDark = true;
+    // } else {
+    //   this.isDark = false;
+    // }
   },
   data() {
     return {
-      isDark: false,
+      isDark: true,
       isCN: false,
       lang: {
         CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 GeeTest 的设计师', '发邮件', '加微信'],
