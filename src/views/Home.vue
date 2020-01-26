@@ -19,7 +19,10 @@
         </div>
         <footer>© 2020 Charlie Liu All rights reserved</footer>
       </div>
-      <img src="../assets/me.png" alt class="right" />
+      <div class="right-pic">
+        <footer>© 2020 Charlie Liu All rights reserved</footer>
+        <img src="../assets/me.png" alt class="right" />
+      </div>
     </main>
   </div>
 </template>
@@ -78,6 +81,7 @@ export default {
     height: calc(100vh - 100px);
 
     .left {
+      z-index: 99;
       max-width: 580px;
       padding-top: 16%;
       display: flex;
@@ -143,12 +147,6 @@ export default {
           }
         }
       }
-
-      footer {
-        @include font(14, 400, 14);
-        opacity: 0.5;
-        margin-bottom: 20px;
-      }
     }
 
     .right {
@@ -156,8 +154,18 @@ export default {
       max-width: 700px;
       position: absolute;
       right: -8%;
+      bottom: 0;
     }
   }
+
+ .right-pic footer {
+    display: none;
+  }
+}
+footer {
+  @include font(14, 400, 14);
+  opacity: 0.5;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 500px) {
@@ -195,7 +203,6 @@ export default {
 
     main {
       padding: 0 20px;
-      height: auto;
       flex-direction: column;
 
       .left {
@@ -218,26 +225,42 @@ export default {
             }
           }
         }
+        footer {
+          display: none;
+        }
+      }
+
+      .right-pic {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        footer {
+          position: absolute;
+          bottom: 16px;
+          display: block;
+          z-index: 99;
+          font-size: 12px;
+          margin-bottom: 0;
+        }
       }
 
       .right {
         margin-top: 32px;
-        position: relative;
-        margin-bottom: -3px;
-        z-index: -1;
         pointer-events: none;
-      }
-
-      footer {
-        position: absolute;
-        bottom: 0;
-        align-self: center;
-        color: white;
-        font-size: 12px;
-        margin-bottom: 16px;
+        right: 0;
+        position: unset;
       }
     }
   }
+  // footer {
+  //   z-index: 99;
+  //   position: absolute;
+  //   bottom: 20px;
+  //   align-self: center;
+  //   color: white;
+  //   font-size: 12px;
+  //   margin-bottom: 16px;
+  // }
 }
 
 .isDark {

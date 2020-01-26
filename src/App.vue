@@ -21,4 +21,12 @@ body {
   height: 100vh;
   overflow: hidden;
 }
+
+@media screen and (max-width: 500px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: black;
+  }
+}
 </style>
