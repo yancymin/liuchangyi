@@ -214,7 +214,7 @@ footer {
   margin-bottom: 20px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 980px) {
   #home {
     .nav {
       align-items: flex-start;
@@ -253,6 +253,7 @@ footer {
       height: unset;
 
       .left {
+        max-width: unset;
         padding: 64px 0 20px 0;
         .contact {
           margin-top: 48px;
