@@ -5,7 +5,7 @@
       <div class="left">
         <div class="info">
           <h1 v-html="isCN?lang.CN[0]:lang.EN[0]"></h1>
-          <p v-html="isCN?lang.CN[1]:lang.EN[1]"></p>
+          <p class="des" v-html="isCN?lang.CN[1]:lang.EN[1]"></p>
           <div class="contact">
             <a href="mailto:dcliuchangyi@gmail.com">
               <img src="../assets/gmail.svg" alt />
@@ -50,6 +50,13 @@ export default {
     //   this.isDark = false;
     // }
     this.gta();
+    const des = document.querySelector('.des');
+    des.addEventListener('mouseenter', () => {
+      document.querySelector('.geetest').style.color = '#347eff';
+    });
+    des.addEventListener('mouseleave', () => {
+      document.querySelector('.geetest').style.color = '#ffffff';
+    });
   },
   data() {
     return {
@@ -155,7 +162,7 @@ export default {
 
             &:nth-of-type(2) {
               &::after {
-                opacity: 1;
+                visibility: visible;
               }
             }
           }
@@ -177,7 +184,7 @@ export default {
             position: relative;
             &::after {
               z-index: 999;
-              opacity: 0;
+              visibility: hidden;
               position: absolute;
               top: 54px;
               content: '';
@@ -239,7 +246,7 @@ footer {
     }
 
     h1 {
-      max-width: unset;
+      max-width: 300px;
       @include font(24, 400, 30);
     }
     p {
