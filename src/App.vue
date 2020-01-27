@@ -20,14 +20,13 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: black;
+  background: #070707;
 }
 
 @media screen and (max-width: 500px) {
   body {
     overflow-x: hidden;
     overflow-y: auto;
-    background: black;
   }
 }
 </style>

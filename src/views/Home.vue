@@ -105,17 +105,22 @@ export default {
     position: relative;
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1160px;
     width: 100%;
     height: calc(100vh - 100px);
 
     .left {
       z-index: 99;
       max-width: 580px;
-      padding-top: 16%;
+      padding-bottom: 100px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
+
+      footer {
+        position: absolute;
+        bottom: 20px;
+      }
 
       h1 {
         @include font(44, 400, 55);
@@ -144,7 +149,7 @@ export default {
 
           &:hover {
             background: white;
-            color: black;
+            color: #070707;
             text-decoration: underline;
             &:nth-of-type(2) {
               &::after {
@@ -184,7 +189,7 @@ export default {
     .right {
       z-index: 0;
       width: 100%;
-      max-width: 700px;
+      max-width: 600px;
       position: absolute;
       right: -8%;
       top: 0;
@@ -238,8 +243,10 @@ footer {
     main {
       padding: 0 20px;
       flex-direction: column;
+      height: unset;
 
       .left {
+        padding: 64px 0 20px 0;
         .contact {
           margin-top: 48px;
 
@@ -298,7 +305,7 @@ footer {
 }
 
 .isDark {
-  background-color: black;
+  background-color: #070707;
 
   h1,
   p,
