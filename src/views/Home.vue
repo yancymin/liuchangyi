@@ -79,9 +79,11 @@ export default {
       const gta = document.querySelector('.geetest');
       gta.addEventListener('mouseenter', () => {
         gta.style.textDecoration = 'underline';
+        gta.style.color = '#347eff';
       });
       gta.addEventListener('mouseleave', () => {
         gta.style.textDecoration = 'none';
+        gta.style.color = '#ffffff';
       });
     },
     langBtn() {
