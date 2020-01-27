@@ -112,14 +112,14 @@ export default {
     .left {
       z-index: 99;
       max-width: 580px;
-      padding-bottom: 100px;
+      padding-bottom: 140px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
 
       footer {
         position: absolute;
-        bottom: 20px;
+        bottom: 0;
       }
 
       h1 {
@@ -133,7 +133,7 @@ export default {
 
       .contact {
         display: flex;
-        margin-top: 96px;
+        margin-top: 10vh;
 
         a {
           display: flex;
@@ -150,12 +150,16 @@ export default {
           &:hover {
             background: white;
             color: #070707;
-            text-decoration: underline;
+
             &:nth-of-type(2) {
               &::after {
                 opacity: 1;
               }
             }
+          }
+
+          &:active {
+            text-decoration: underline;
           }
 
           img {
@@ -170,6 +174,7 @@ export default {
           &:nth-of-type(2) {
             position: relative;
             &::after {
+              z-index: 999;
               opacity: 0;
               position: absolute;
               top: 54px;
@@ -191,7 +196,7 @@ export default {
       width: 100%;
       max-width: 600px;
       position: absolute;
-      right: -8%;
+      right: 0;
       top: 0;
       pointer-events: none;
     }
@@ -275,6 +280,9 @@ footer {
         position: relative;
         display: flex;
         justify-content: center;
+        overflow: hidden;
+        height: 400px;
+
         footer {
           position: absolute;
           bottom: 16px;
@@ -289,7 +297,6 @@ footer {
         margin-top: 32px;
         pointer-events: none;
         right: 0;
-        position: unset;
       }
     }
   }
