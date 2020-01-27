@@ -20,6 +20,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background: black;
 }
 
 @media screen and (max-width: 500px) {

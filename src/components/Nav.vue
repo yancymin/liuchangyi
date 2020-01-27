@@ -37,6 +37,7 @@ export default {
 @import '../style/global.scss';
 
 .nav {
+  z-index: 99;
   width: 100vw;
   padding: 32px 50px;
   display: flex;

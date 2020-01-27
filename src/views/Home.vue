@@ -4,16 +4,16 @@
     <main>
       <div class="left">
         <div class="info">
-          <h1>{{isCN?lang.CN[0]:lang.EN[0]}}</h1>
-          <p>{{isCN?lang.CN[1]:lang.EN[1]}}</p>
+          <h1 v-html="isCN?lang.CN[0]:lang.EN[0]"></h1>
+          <p v-html="isCN?lang.CN[1]:lang.EN[1]"></p>
           <div class="contact">
             <a href="mailto:dcliuchangyi@gmail.com">
               <img src="../assets/gmail.svg" alt />
               {{isCN?lang.CN[2]:lang.EN[2]}}
             </a>
-            <a>
+            <a @click="weChat()" v-clipboard:copy="this.copyText">
               <img src="../assets/wechat.svg" alt />
-              {{isCN?lang.CN[3]:lang.EN[3]}}
+              <span class="weChat">{{isCN?lang.CN[3]:lang.EN[3]}}</span>
             </a>
           </div>
         </div>
@@ -35,6 +35,12 @@ export default {
   components: {
     Nav,
   },
+  updated() {
+    this.gta();
+    if (this.count !== 0) {
+      this.weChat();
+    }
+  },
   mounted() {
     // const nowTime = new Date();
 
@@ -43,18 +49,41 @@ export default {
     // } else {
     //   this.isDark = false;
     // }
+    this.gta();
   },
   data() {
     return {
+      count: 0,
+      copyText: 'CHARLIE0105',
       isDark: true,
       isCN: false,
+      copyedEN: 'Copyed',
+      copyedCN: '已复制',
       lang: {
-        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 GeeTest 的设计师', '发邮件', '加微信'],
-        EN: ['A relentless mind focused on crafting beautiful user experience', 'Currently located in Wuhan, CN as a designer of Geetest', 'Gmail', 'WeChat'],
+        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 <a class="geetest" href="https://geetest.com">GeeTest</a> 的设计师', '发邮件', '加微信'],
+        EN: ['A relentless mind focused on crafting beautiful user experience', 'Currently located in Wuhan, CN as a designer of <a class="geetest" href="https://geetest.com">GeeTest</a>', 'Gmail', 'WeChat'],
       },
     };
   },
   methods: {
+    weChat() {
+      this.count += 1;
+      const weChat = document.querySelector('.weChat');
+      if (this.isCN) {
+        weChat.textContent = this.copyedCN;
+      } else {
+        weChat.textContent = this.copyedEN;
+      }
+    },
+    gta() {
+      const gta = document.querySelector('.geetest');
+      gta.addEventListener('mouseenter', () => {
+        gta.style.textDecoration = 'underline';
+      });
+      gta.addEventListener('mouseleave', () => {
+        gta.style.textDecoration = 'none';
+      });
+    },
     langBtn() {
       this.isCN = !this.isCN;
     },
@@ -110,10 +139,13 @@ export default {
           border: 1px solid #000000;
           cursor: pointer;
           transition: all 0.25s ease;
+          @include font(14, 400, 14);
+          color: white;
 
           &:hover {
-            background: black;
-            color: white;
+            background: white;
+            color: black;
+            text-decoration: underline;
             &:nth-of-type(2) {
               &::after {
                 opacity: 1;
@@ -150,15 +182,17 @@ export default {
     }
 
     .right {
+      z-index: 0;
       width: 100%;
       max-width: 700px;
       position: absolute;
       right: -8%;
-      bottom: 0;
+      top: 0;
+      pointer-events: none;
     }
   }
 
- .right-pic footer {
+  .right-pic footer {
     display: none;
   }
 }
