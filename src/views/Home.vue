@@ -4,7 +4,7 @@
     <main>
       <div class="left">
         <div class="info">
-          <h1 v-html="isCN?lang.CN[0]:lang.EN[0]"></h1>
+          <h1 :class="{enWidth: !isCN}" v-html="isCN?lang.CN[0]:lang.EN[0]"></h1>
           <p class="des" v-html="isCN?lang.CN[1]:lang.EN[1]"></p>
           <div class="contact">
             <a href="mailto:dcliuchangyi@gmail.com">
@@ -40,8 +40,19 @@ export default {
     if (this.count !== 0) {
       this.weChat();
     }
+
+    const weChat = document.querySelector('.weChat');
+
+    if (this.isCN) {
+      weChat.textContent = '加微信';
+    } else {
+      weChat.textContent = 'Wechat';
+    }
   },
   mounted() {
+    const gta = document.querySelector('.geetest');
+    gta.style.color = '#347eff';
+
     // const nowTime = new Date();
 
     // if (nowTime.getHours() >= 19 || nowTime.getHours() <= 7) {
@@ -50,24 +61,24 @@ export default {
     //   this.isDark = false;
     // }
     this.gta();
-    const des = document.querySelector('.des');
-    des.addEventListener('mouseenter', () => {
-      document.querySelector('.geetest').style.color = '#347eff';
-    });
-    des.addEventListener('mouseleave', () => {
-      document.querySelector('.geetest').style.color = '#ffffff';
-    });
+    // const des = document.querySelector('.des');
+    // des.addEventListener('mouseenter', () => {
+    //   document.querySelector('.geetest').style.color = '#347eff';
+    // });
+    // des.addEventListener('mouseleave', () => {
+    //   // document.querySelector('.geetest').style.color = '#ffffff';
+    // });
   },
   data() {
     return {
       count: 0,
       copyText: 'CHARLIE0105',
       isDark: true,
-      isCN: false,
+      isCN: true,
       copyedEN: 'Copyed',
       copyedCN: '已复制',
       lang: {
-        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 <a class="geetest" href="https://geetest.com">GeeTest</a> 的设计师', '发邮件', '加微信'],
+        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 <a class="geetest" href="https://geetest.com">GeeTest</a> 的设计师。', '发邮件', '加微信'],
         EN: ['A relentless mind focused on crafting beautiful user experience', 'Currently located in Wuhan, CN as a designer of <a class="geetest" href="https://geetest.com">GeeTest</a>', 'Gmail', 'WeChat'],
       },
     };
@@ -81,16 +92,25 @@ export default {
       } else {
         weChat.textContent = this.copyedEN;
       }
+
+      setTimeout(() => {
+        if (this.isCN) {
+          weChat.textContent = '加微信';
+        } else {
+          weChat.textContent = 'Wechat';
+        }
+      }, 2000);
     },
     gta() {
       const gta = document.querySelector('.geetest');
+      gta.style.color = '#347eff';
       gta.addEventListener('mouseenter', () => {
         gta.style.textDecoration = 'underline';
         gta.style.color = '#347eff';
       });
       gta.addEventListener('mouseleave', () => {
         gta.style.textDecoration = 'none';
-        gta.style.color = '#ffffff';
+        // gta.style.color = '#ffffff';
       });
     },
     langBtn() {
@@ -121,7 +141,7 @@ export default {
     .left {
       z-index: 99;
       max-width: 580px;
-      padding-bottom: 140px;
+      padding-bottom: 100px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -171,6 +191,10 @@ export default {
             text-decoration: underline;
           }
 
+          &:active {
+            background: #070707;
+            color: white;
+          }
           img {
             width: 24px;
             height: 24px;
@@ -191,7 +215,7 @@ export default {
               display: block;
               width: 144px;
               height: 144px;
-              background: url('../assets/QR.png') no-repeat;
+              background: url('../assets/QR.jpg') no-repeat;
               background-size: cover;
               transition: all 0.25s ease;
             }
@@ -240,7 +264,7 @@ footer {
       }
       ::v-deep .langSwitch {
         position: absolute;
-        top: 20px;
+        top: 28px;
         right: 20px;
       }
     }
@@ -291,20 +315,20 @@ footer {
         display: flex;
         justify-content: center;
         overflow: hidden;
-        height: 400px;
+        height: 480px;
 
         footer {
           position: absolute;
           bottom: 16px;
           display: block;
           z-index: 99;
-          font-size: 12px;
+          font-size: 10px;
           margin-bottom: 0;
         }
       }
 
       .right {
-        margin-top: 32px;
+        // margin-top: 32px;
         pointer-events: none;
         right: 0;
       }
@@ -346,5 +370,8 @@ footer {
     border-color: white !important;
     color: white;
   }
+}
+.enWidth {
+  max-width: unset !important;
 }
 </style>

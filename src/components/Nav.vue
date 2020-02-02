@@ -1,6 +1,6 @@
 <template>
   <div class="nav">
-    <div class="left">{{isCN?lang.CN[0]:lang.EN[0]}}</div>
+    <div class="left"><img src="../assets/logo.svg">{{isCN?lang.CN[0]:lang.EN[0]}}</div>
     <div class="right">
       <div class="links">
         <a target="_blank" href="https://dribbble.com/Charlie_Liu">Dribbble</a>/
@@ -45,7 +45,14 @@ export default {
   align-items: center;
 
   .left {
+    display: flex;
+    align-items: center;
     @include font(18, 400, 18);
+
+    img {
+      width: 31px;
+      margin-right: 20px;
+    }
   }
 
   .right {
