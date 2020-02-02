@@ -35,6 +35,20 @@ export default {
   components: {
     Nav,
   },
+  data() {
+    return {
+      count: 0,
+      copyText: 'CHARLIE0105',
+      isDark: true,
+      isCN: true,
+      copyedEN: 'Copyed',
+      copyedCN: '已复制',
+      lang: {
+        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 <a class="geetest" href="https://geetest.com">GeeTest</a> 的设计师。', '发邮件', '加微信'],
+        EN: ['A relentless mind focused on crafting beautiful user experience', 'Currently located in Wuhan, CN as a designer of <a class="geetest" href="https://geetest.com">GeeTest</a>', 'Gmail', 'WeChat'],
+      },
+    };
+  },
   updated() {
     this.gta();
     if (this.count !== 0) {
@@ -53,6 +67,7 @@ export default {
     const gta = document.querySelector('.geetest');
     gta.style.color = '#347eff';
 
+    this.gta();
     // const nowTime = new Date();
 
     // if (nowTime.getHours() >= 19 || nowTime.getHours() <= 7) {
@@ -60,7 +75,6 @@ export default {
     // } else {
     //   this.isDark = false;
     // }
-    this.gta();
     // const des = document.querySelector('.des');
     // des.addEventListener('mouseenter', () => {
     //   document.querySelector('.geetest').style.color = '#347eff';
@@ -69,20 +83,7 @@ export default {
     //   // document.querySelector('.geetest').style.color = '#ffffff';
     // });
   },
-  data() {
-    return {
-      count: 0,
-      copyText: 'CHARLIE0105',
-      isDark: true,
-      isCN: true,
-      copyedEN: 'Copyed',
-      copyedCN: '已复制',
-      lang: {
-        CN: ['专注于创造美好的用户体验 而不懈努力', '目前位于中国武汉，任职 <a class="geetest" href="https://geetest.com">GeeTest</a> 的设计师。', '发邮件', '加微信'],
-        EN: ['A relentless mind focused on crafting beautiful user experience', 'Currently located in Wuhan, CN as a designer of <a class="geetest" href="https://geetest.com">GeeTest</a>', 'Gmail', 'WeChat'],
-      },
-    };
-  },
+
   methods: {
     weChat() {
       this.count += 1;

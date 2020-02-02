@@ -1,3 +1,10 @@
+/**
+ * @author Yancy Min
+ * @email me@yancymin.design
+ * @create date 2020-02-02 18:34:01
+ * @modify date 2020-02-02 18:34:01
+ * @desc [description]
+ */
 <template>
   <div id="app">
     <router-view />
