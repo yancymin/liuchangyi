@@ -58,12 +58,13 @@ export default {
     };
   },
   updated() {
+    const weChat = document.querySelector('.weChat');
+    const wechatBtn = document.querySelector('.wechatBtn');
     this.gta();
     if (this.count !== 0) {
       this.weChat();
     }
-
-    const weChat = document.querySelector('.weChat');
+    wechatBtn.classList.remove('isMobileBtn-1');
 
     if (this.isCN) {
       weChat.textContent = '加微信';
