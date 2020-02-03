@@ -112,11 +112,14 @@ export default {
     weChat() {
       this.count += 1;
       const weChat = document.querySelector('.weChat');
+      const wechatBtn = document.querySelector('.wechatBtn');
+
       if (this.isCN) {
         weChat.textContent = this.copyedCN;
       } else {
         weChat.textContent = this.copyedEN;
       }
+      wechatBtn.classList.add('isMobileBtn-1');
 
       setTimeout(() => {
         if (this.isCN) {
@@ -124,6 +127,7 @@ export default {
         } else {
           weChat.textContent = 'Wechat';
         }
+        wechatBtn.classList.remove('isMobileBtn-1');
       }, 2000);
     },
     gta() {
@@ -399,14 +403,15 @@ footer {
 }
 
 .isMobileBtn {
-  &:hover {
-    background: #070707 !important;
-    color: white !important;
-  }
-
+  &:hover,
   &:active {
-    background: #fff !important;
+    background: white !important;
     color: black !important;
   }
+}
+
+.isMobileBtn-1 {
+  background: #fff !important;
+  color: black !important;
 }
 </style>

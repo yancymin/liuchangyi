@@ -47,7 +47,7 @@ export default {
   .left {
     display: flex;
     align-items: center;
-    @include font(18, 400, 18);
+    @include font(24, 400, 24);
 
     img {
       width: 36px;
