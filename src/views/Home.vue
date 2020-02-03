@@ -11,16 +11,21 @@
               <img src="../assets/gmail.svg" alt />
               {{isCN?lang.CN[2]:lang.EN[2]}}
             </a>
-            <a @click="weChat()" v-clipboard:copy="this.copyText">
+            <a
+              class="wechatBtn"
+              @click="weChat()"
+              v-clipboard:copy="this.copyText"
+              :class="{isMobileBtn: (this.currentbodyWidth<this.bodyWidth)?true:false}"
+            >
               <img src="../assets/wechat.svg" alt />
               <span class="weChat">{{isCN?lang.CN[3]:lang.EN[3]}}</span>
             </a>
           </div>
         </div>
-        <footer>© 2020 Charlie Liu All rights reserved</footer>
+        <footer>{{this.footer}}</footer>
       </div>
       <div class="right-pic">
-        <footer>© 2020 Charlie Liu All rights reserved</footer>
+        <footer>{{this.footer}}</footer>
         <img src="../assets/me.png" alt class="right" />
       </div>
     </main>
@@ -37,6 +42,9 @@ export default {
   },
   data() {
     return {
+      footer: '© 2020 Charlie Liu All rights reserved',
+      bodyWidth: 980,
+      currentbodyWidth: null,
       count: 0,
       copyText: 'CHARLIE0105',
       isDark: true,
@@ -64,10 +72,26 @@ export default {
     }
   },
   mounted() {
+    this.currentbodyWidth = document.querySelector('body').clientWidth;
     const gta = document.querySelector('.geetest');
     gta.style.color = '#347eff';
 
     this.gta();
+
+    const wechatBtn = document.querySelector('.wechatBtn');
+    const weChat = document.querySelector('.weChat');
+
+    if (document.querySelector('body').clientWidth > this.bodyWidth) {
+      wechatBtn.onclick = () => {
+        if (this.isCN) {
+          weChat.textContent = '加微信';
+        } else {
+          weChat.textContent = 'Wechat';
+        }
+      };
+    }
+
+
     // const nowTime = new Date();
 
     // if (nowTime.getHours() >= 19 || nowTime.getHours() <= 7) {
@@ -188,14 +212,6 @@ export default {
             }
           }
 
-          &:active {
-            text-decoration: underline;
-          }
-
-          &:active {
-            background: #070707;
-            color: white;
-          }
           img {
             width: 24px;
             height: 24px;
@@ -204,6 +220,12 @@ export default {
 
           &:nth-of-type(1) {
             margin-right: 24px;
+
+            &:active {
+              background: #070707;
+              color: white;
+              text-decoration: underline;
+            }
           }
           &:nth-of-type(2) {
             position: relative;
@@ -374,5 +396,17 @@ footer {
 }
 .enWidth {
   max-width: unset !important;
+}
+
+.isMobileBtn {
+  &:hover {
+    background: #070707 !important;
+    color: white !important;
+  }
+
+  &:active {
+    background: #fff !important;
+    color: black !important;
+  }
 }
 </style>

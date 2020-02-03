@@ -50,8 +50,8 @@ export default {
     @include font(18, 400, 18);
 
     img {
-      width: 31px;
-      margin-right: 20px;
+      width: 36px;
+      margin-right: 18px;
     }
   }
 
