@@ -119,7 +119,10 @@ export default {
       } else {
         weChat.textContent = this.copyedEN;
       }
-      wechatBtn.classList.add('isMobileBtn-1');
+
+      if (document.querySelector('body').clientWidth < this.bodyWidth) {
+        wechatBtn.classList.add('isMobileBtn-1');
+      }
 
       setTimeout(() => {
         if (this.isCN) {
@@ -206,9 +209,6 @@ export default {
           color: white;
 
           &:hover {
-            background: white;
-            color: #070707;
-
             &:nth-of-type(2) {
               &::after {
                 visibility: visible;
@@ -224,6 +224,11 @@ export default {
 
           &:nth-of-type(1) {
             margin-right: 24px;
+
+            &:hover {
+              background: white;
+              color: #070707;
+            }
 
             &:active {
               background: #070707;
@@ -270,6 +275,15 @@ footer {
   @include font(14, 400, 14);
   opacity: 0.5;
   margin-bottom: 20px;
+}
+
+@media screen and (min-width: 980px) {
+  .wechatBtn {
+    &:hover {
+      background: white;
+      color: #070707 !important;
+    }
+  }
 }
 
 @media screen and (max-width: 980px) {
@@ -405,8 +419,8 @@ footer {
 .isMobileBtn {
   &:hover,
   &:active {
-    background: white !important;
-    color: black !important;
+    background: black;
+    color: white;
   }
 }
 
