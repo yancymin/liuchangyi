@@ -26,7 +26,7 @@
       </div>
       <div class="right-pic">
         <footer>{{this.footer}}</footer>
-        <img src="../assets/me.png" alt class="right" />
+        <img src="https://i.loli.net/2020/02/03/kgriAS4YefxdutG.png" alt class="right" />
       </div>
     </main>
   </div>
